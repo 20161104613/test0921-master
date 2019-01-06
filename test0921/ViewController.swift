@@ -10,12 +10,9 @@ import UIKit
 
 class ViewController: UIViewController {
     @IBOutlet weak var display: UITextField!
-    var re = 0
-    var add = 0
-    var min = 0
-    var mul = 0
-    var div = 0
-    var judge = 0
+    var re = 0 //  判断display.text前是否存在符号
+    var add = 0 //判断运算符是否出现过
+    var judge = 0   //判断小数点是否出现过
     var result = ""
     var number = 0
     var count = 0
@@ -116,7 +113,7 @@ class ViewController: UIViewController {
         else{
             if display.text ==  ""{
                 display.text = ""
-            }
+            }//判断字符串是否为空，如果为空，使其变为0；空字符串时，导致程序闪退
             else{
                 add = 1
                 let x = Double(display.text!)!
@@ -141,7 +138,7 @@ class ViewController: UIViewController {
     
     @IBAction func minus(_ sender: Any) {
         judge = 0
-        if min == 1{
+        if add == 1{
             let a = Double(result)!
             let b = Double(display.text!)!
             let c = a - b
@@ -155,7 +152,7 @@ class ViewController: UIViewController {
                 display.text = ""
             }
             else{
-                min = 1
+                add = 1
                 let x = Double(display.text!)!
                 result = String(x)
                 display.text = ""
@@ -168,7 +165,7 @@ class ViewController: UIViewController {
     
     @IBAction func multiply(_ sender: Any) {
         judge = 0
-        if mul == 1{
+        if add == 1{
             let a = Double(result)!
             let b = Double(display.text!)!
             let c = a * b
@@ -183,7 +180,7 @@ class ViewController: UIViewController {
                 display.text = ""
             }
             else{
-                mul = 1
+                add = 1
                 let x = Double(display.text!)!
                 result = String(x)
                 display.text = ""
@@ -195,7 +192,7 @@ class ViewController: UIViewController {
     
     @IBAction func divide(_ sender: Any) {
         judge = 0
-        if div == 1{
+        if add == 1{
            
             let a = Double(result)!
             let b = Double(display.text!)!
@@ -210,7 +207,7 @@ class ViewController: UIViewController {
                 display.text = ""
             }
             else{
-                div = 1
+                add = 1
                 let x = Double(display.text!)!
                 result = String(x)
                 display.text = ""
@@ -245,9 +242,7 @@ class ViewController: UIViewController {
         re = 1
         judge = 0
         add = 0
-        min = 0
-        mul = 0
-        div = 0
+    
     }
     
     
@@ -279,9 +274,6 @@ class ViewController: UIViewController {
         display.text = ""
         re = 0
         add = 0
-        min = 0
-        mul = 0
-        div = 0
         judge = 0
     }
     override func viewDidLoad() {
